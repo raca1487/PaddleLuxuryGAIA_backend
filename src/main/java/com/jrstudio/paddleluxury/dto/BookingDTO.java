@@ -1,6 +1,6 @@
 package com.jrstudio.paddleluxury.dto;
 
-import com.jrstudio.paddleluxury.securityGAIA.entity.Usuario;
+import com.jrstudio.paddleluxury.securityGAIA.entities.Usuario;
 
 import javax.validation.constraints.NotBlank;
 

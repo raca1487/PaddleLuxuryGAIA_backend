@@ -1,6 +1,7 @@
 package com.jrstudio.paddleluxury.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jrstudio.paddleluxury.securityGAIA.entities.Usuario;
 
 import javax.persistence.*;
 
