@@ -1,5 +1,6 @@
 package com.jrstudio.paddleluxury.securityGAIA.entities;
 
+import com.jrstudio.paddleluxury.entities.Address;
 import com.jrstudio.paddleluxury.entities.Booking;
 
 import javax.persistence.*;
@@ -17,8 +18,13 @@ public class Usuario {
     @NotNull
     private String nombre;
     @NotNull
+    private String apellidos;
+    @NotNull
     @Column(unique = true)
     private String nombreUsuario;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ADDRESS", referencedColumnName = "id", nullable = false)
+    private Address address;
     @NotNull
     private String email;
     @NotNull
@@ -35,9 +41,11 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password) {
+    public Usuario(@NotNull String nombre, @NotNull String apellidos, @NotNull String nombreUsuario, Address address, @NotNull String email, @NotNull String password) {
         this.nombre = nombre;
+        this.apellidos = apellidos;
         this.nombreUsuario = nombreUsuario;
+        this.address = address;
         this.email = email;
         this.password = password;
     }
@@ -58,12 +66,28 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
     public String getNombreUsuario() {
         return nombreUsuario;
     }
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getEmail() {

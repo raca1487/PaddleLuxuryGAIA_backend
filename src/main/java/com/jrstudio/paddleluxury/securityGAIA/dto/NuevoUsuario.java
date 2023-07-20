@@ -1,5 +1,7 @@
 package com.jrstudio.paddleluxury.securityGAIA.dto;
 
+import com.jrstudio.paddleluxury.entities.Address;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
@@ -10,7 +12,11 @@ public class NuevoUsuario {
     @NotBlank
     private String nombre;
     @NotBlank
+    private String apellidos;
+    @NotBlank
     private String nombreUsuario;
+
+    private Address address;
     @Email
     private String email;
     @NotBlank
@@ -25,12 +31,28 @@ public class NuevoUsuario {
         this.nombre = nombre;
     }
 
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
     public String getNombreUsuario() {
         return nombreUsuario;
     }
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getEmail() {
