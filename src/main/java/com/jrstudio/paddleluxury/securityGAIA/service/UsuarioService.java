@@ -23,6 +23,10 @@ public class UsuarioService {
         return usuarioRepository.existsByNombreUsuario(nombreUsuario);
     }
 
+    public Optional<Usuario> getByEmail(String email){
+        return usuarioRepository.findByEmail(email);
+    }
+
     public boolean existsByEmail(String email){
         return usuarioRepository.existsByEmail(email);
     }
