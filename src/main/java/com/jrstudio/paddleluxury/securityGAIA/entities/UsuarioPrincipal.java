@@ -22,10 +22,10 @@ public class UsuarioPrincipal implements UserDetails {
     private List<Booking> bookingList;
     private Usuario usuario;
 
-    public UsuarioPrincipal(String nombre, String apellidos, String nombreUsuario, Address address, String email, String password, Collection<? extends GrantedAuthority> authorities, Usuario usuario) {
+    public UsuarioPrincipal(String nombre, String apellidos, Address address, String email, String password, Collection<? extends GrantedAuthority> authorities, Usuario usuario) {
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.nombreUsuario = nombreUsuario;
+
         this.address = address;
         this.email = email;
         this.password = password;
@@ -37,7 +37,7 @@ public class UsuarioPrincipal implements UserDetails {
         List<GrantedAuthority> authorities =
                 usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol
                         .getRolNombre().name())).collect(Collectors.toList());
-        return new UsuarioPrincipal(usuario.getNombre(), usuario.getApellidos(), usuario.getNombreUsuario(), usuario.getAddress(), usuario.getEmail(), usuario.getPassword(), authorities, usuario);
+        return new UsuarioPrincipal(usuario.getNombre(), usuario.getApellidos(), usuario.getAddress(), usuario.getEmail(), usuario.getPassword(), authorities, usuario);
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -76,6 +76,10 @@ public class UsuarioPrincipal implements UserDetails {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
     }
 
     public String getEmail() {

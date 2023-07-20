@@ -41,10 +41,10 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(@NotNull String nombre, @NotNull String apellidos, @NotNull String nombreUsuario, Address address, @NotNull String email, @NotNull String password) {
+    public Usuario(@NotNull String nombre, @NotNull String apellidos, Address address, @NotNull String email, @NotNull String password) {
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.nombreUsuario = nombreUsuario;
+        this.nombreUsuario = address.getBuilding() + address.getFloor() + address.getDoor() + " " + getFirstLetter(getNombre(), getApellidos());
         this.address = address;
         this.email = email;
         this.password = password;
@@ -120,5 +120,11 @@ public class Usuario {
     public void addBooking(Booking booking) {
         getBookings().add(booking);
         booking.setUsuario(this);
+    }
+    public static String getFirstLetter(String str1, String str2) {
+        String firstStr1 = String.valueOf(str1.charAt(0));
+        String firstStr2 = String.valueOf(str2.charAt(0));
+
+        return firstStr1 + firstStr2;
     }
 }
