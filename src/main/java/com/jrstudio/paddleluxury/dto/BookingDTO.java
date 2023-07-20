@@ -3,26 +3,27 @@ package com.jrstudio.paddleluxury.dto;
 import com.jrstudio.paddleluxury.securityGAIA.entities.Usuario;
 
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 public class BookingDTO {
 
     @NotBlank
-    private String date;
+    private LocalDateTime reservationDate;
 
     private Usuario usuario;
 
     public BookingDTO() {
     }
-    public BookingDTO(@NotBlank String date) {
-        this.date = date;
+    public BookingDTO(@NotBlank LocalDateTime reservationDate) {
+        this.reservationDate = reservationDate;
     }
 
-    public String getDate() {
-        return date;
+    public LocalDateTime getReservationDate() {
+        return reservationDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setReservationDate(LocalDateTime reservationDate) {
+        this.reservationDate = reservationDate;
     }
 
     public Usuario getUsuario() {

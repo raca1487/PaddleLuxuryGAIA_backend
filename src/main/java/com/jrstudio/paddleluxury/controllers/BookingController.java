@@ -6,7 +6,6 @@ import com.jrstudio.paddleluxury.entities.Booking;
 import com.jrstudio.paddleluxury.securityGAIA.entities.Usuario;
 import com.jrstudio.paddleluxury.securityGAIA.entities.UsuarioPrincipal;
 import com.jrstudio.paddleluxury.services.BookingService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,13 +39,13 @@ public class BookingController {
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody BookingDTO bookingDTO, @AuthenticationPrincipal UserDetails userDetails) {
-        if (StringUtils.isBlank(bookingDTO.getDate()))
+        if (bookingDTO.getReservationDate() == null)
             return new ResponseEntity(new Message("Reservation date is mandatory"), HttpStatus.BAD_REQUEST);
 
-        if (bookingService.existsByDate(bookingDTO.getDate()))
+        if (bookingService.existsByReservationDate(bookingDTO.getReservationDate()))
             return new ResponseEntity(new Message("Date is booked"), HttpStatus.BAD_REQUEST);
 
-        Booking booking = new Booking(bookingDTO.getDate());
+        Booking booking = new Booking(bookingDTO.getReservationDate());
 
         // Get the user from the UserDetails object
         Usuario usuario = ((UsuarioPrincipal) userDetails).getUsuario();

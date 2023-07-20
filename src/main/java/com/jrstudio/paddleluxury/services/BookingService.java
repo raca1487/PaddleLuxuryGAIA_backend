@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +23,8 @@ public class BookingService {
     public Optional<Booking> getOne(long id) {
         return bookingRepository.findById(id);
     }
-    public Optional<Booking> getByDate(String date) {
-        return bookingRepository.findByDate(date);
+    public Optional<Booking> getByReservationDate(LocalDateTime reservationDate) {
+        return bookingRepository.findByReservationDate(reservationDate);
     }
 
     public void save(Booking booking) {
@@ -35,7 +36,7 @@ public class BookingService {
     public boolean existsById(long id) {
         return bookingRepository.existsById(id);
     }
-    public boolean existsByDate(String date) {
-        return bookingRepository.existsByDate(date);
+    public boolean existsByReservationDate(LocalDateTime reservationDate) {
+        return bookingRepository.existsByReservationDate(reservationDate);
     }
 }

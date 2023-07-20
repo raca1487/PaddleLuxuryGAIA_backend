@@ -32,4 +32,9 @@ build/
 ### VS Code ###
 .vscode/
 
+### Project
+/utils
+
+### Files
 .DS_Store
+.gitignore

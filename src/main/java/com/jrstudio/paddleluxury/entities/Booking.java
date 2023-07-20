@@ -1,9 +1,11 @@
 package com.jrstudio.paddleluxury.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jrstudio.paddleluxury.securityGAIA.entities.Usuario;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "RESERVAS")
@@ -12,8 +14,8 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //@JsonFormat(pattern = "dd/MM/YYYY HH:mm")
-    private String date;
+    @JsonFormat(pattern = "dd/MM/YYYY HH:mm")
+    private LocalDateTime reservationDate, applicationDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USUARIO", referencedColumnName = "id", nullable = false)
@@ -23,24 +25,25 @@ public class Booking {
     // CONSTRUCTORS
     public Booking() {
     }
-    public Booking(String date) {
-        this.date = date;
+    public Booking(LocalDateTime reservationDate) {
+        this.applicationDate = LocalDateTime.now();
+        this.reservationDate = reservationDate;
     }
 
     // GETTERS
     public Long getId() {
         return id;
     }
-    public String getDate() {
-        return date;
+    public LocalDateTime getReservationDate() {
+        return reservationDate;
     }
 
     // SETTERS
     public void setId(Long id) {
         this.id = id;
     }
-    public void setDate(String date) {
-        this.date = date;
+    public void setReservationDate(LocalDateTime reservationDate) {
+        this.reservationDate = reservationDate;
     }
 
     public Usuario getUsuario() {
